@@ -1,7 +1,15 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
-const Product = (props) => {
-  return (<h1>Product Component!</h1>)
+const Product = ({product}) => {
+  
+  return (
+    <div>
+      <Link to={`/product/${product.id}`}>
+        <h1>{product.name}</h1>
+      </Link>
+      <h2>{product.description}</h2>
+    </div>
+  )
 }
 
 export default Product;
