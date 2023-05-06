@@ -11,7 +11,7 @@ const Form = (props) => {
   const [formData, setFormData] = useState(
     props.formType === 'new' ? {
       name: '',
-      image: undefined,
+      image: '',
       description: '',
       price: 0.00
     } : {
@@ -35,7 +35,7 @@ const Form = (props) => {
   const handleSubmission = (event) => {
     event.preventDefault();
     props.handleSubmission(formData, props.formType);
-    navigate('/');
+    navigate('/products');
   }
 
 
@@ -50,10 +50,9 @@ const Form = (props) => {
       />
       <h3>Image</h3>
       <input
-        type='image'
+        type='text'
         onChange={handleChange}
-        src={formData.image}
-        alt={formData.name}
+        value={formData.image}
         name='image'
       />
       <h3>Description</h3>
@@ -70,9 +69,10 @@ const Form = (props) => {
         value={formData.price}
         name='price'
       />
-      <input type='submit' value={props.buttonLabel} />
-      <Link to={"/"}>
-        <button>Go Back</button>
+      <br/>
+      <input id="add-product" type='submit' value={props.buttonLabel} />
+      <Link to={"/products"}>
+        <button className="go-back">Go Back</button>
       </Link>
     </form>
   )

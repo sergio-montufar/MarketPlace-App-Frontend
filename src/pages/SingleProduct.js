@@ -10,7 +10,7 @@ const SingleProduct = ({products, deleteProduct}) => {
     event.preventDefault();
     let currentProduct = products.find(product => product.id === parseInt(params.id));
     deleteProduct(currentProduct.id);
-    navigate('/');
+    navigate('/products');
   }
 
   const params = useParams();
@@ -20,20 +20,20 @@ const SingleProduct = ({products, deleteProduct}) => {
 
   return (
   <div>
-    <Link to={"/"}>
-      <button>Go Back</button>
+    <Link to={"/products"}>
+      <button className="go-back">Go Back</button>
     </Link>
     <h1>{currentProduct.name}</h1>
     <img src={currentProduct.image} alt={currentProduct.name}/>
     <h2>{currentProduct.description}</h2>
-    <h2>Price: {currentProduct.price}</h2>
+    <h2>Price: ${currentProduct.price}</h2>
 
     <Link to={`/edit/${params.id}`}>
-      <button>Edit Product</button>
+      <button id="edit-button">Edit Product</button>
     </Link>
     
     <form onSubmit={handleDelete}>
-      <input type='submit' value='Delete' />
+      <input id="delete-button" type='submit' value='Delete' />
       {/* ☰ */}
     </form>
   </div>

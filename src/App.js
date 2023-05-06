@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
+import Header from "./components/Header";
 import AllProducts from "./pages/AllProducts";
 import SingleProduct from "./pages/SingleProduct";
 import Form from "./pages/Form";
+import Home from "./pages/Home";
 import './App.css';
 
 
 
 import { Route, Routes } from "react-router-dom";
 
-const apiURL = "http://localhost:5229"
+const apiURL = "https://homehaven.herokuapp.com"
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -58,15 +60,21 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Marketplace</h1>
+      <Header/>
+      
+      <h1>HomeHaven</h1>
       <Routes>
         <Route
-          exact
           path='/'
+          element={<Home/>}
+        />
+        <Route
+          exact
+          path='/products'
           element={<AllProducts products={products}/>}
         />
         <Route
-          path='/product/:id'
+          path='/products/:id'
           element={<SingleProduct products={products} deleteProduct={deleteProduct}/>}
         />
         <Route 
